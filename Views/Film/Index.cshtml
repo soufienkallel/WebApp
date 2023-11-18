@@ -1,0 +1,61 @@
+﻿@model IEnumerable<WebApplication1.Models.Film>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trailer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categorie)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FilmDescription)
+            </td>
+            <td>
+                    <img src="~/uploads/@item.Image" class="card-img-top preview-image" alt="Film Image">
+            </td>
+            <td> 
+                @Html.DisplayFor(modelItem => item.Trailer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categorie.CatID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.FilmId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.FilmId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.FilmId">Delete</a>
+                    <a asp-action="AddToFavorites" asp-route-id="@item.FilmId" >add</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

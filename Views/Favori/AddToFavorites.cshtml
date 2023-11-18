@@ -1,0 +1,24 @@
+﻿@model WebApplication1.Models.FavoriteFilm
+
+@{
+    ViewData["Title"] = "AddToFavorites";
+}
+
+<h1>AddToFavorites</h1>
+
+<h3>Are you sure you want to AddToFavorites ?</h3>
+<div>
+
+    @using (Html.BeginForm("AddToFavorites", "Favori", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            @Html.LabelFor(model => model.FilmId)
+            @Html.TextBoxFor(model => model.FilmId, new { @class = "form-control" })
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+        
+    }
+
+</div>
+

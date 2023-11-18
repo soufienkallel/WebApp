@@ -1,0 +1,58 @@
+﻿@model WebApplication1.Models.Film
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Film</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FilmName" class="control-label"></label>
+                <input asp-for="FilmName" class="form-control" />
+                <span asp-validation-for="FilmName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FilmDescription" class="control-label"></label>
+                <input asp-for="FilmDescription" class="form-control" />
+                <span asp-validation-for="FilmDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" type="file" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>>
+            </div>
+            <div class="form-group">
+                <label asp-for="Trailer" class="control-label"></label>
+                <input asp-for="Trailer" class="form-control" />
+                <span asp-validation-for="Trailer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CatID" class="control-label"></label>
+                <select asp-for="CatID" asp-items="@(new SelectList(ViewBag.Categories, "CatID", "CatName"))" class="form-control"></select>
+                <span asp-validation-for="CatID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdID" class="control-label"></label>
+                <select asp-for="ProdID" asp-items="@(new SelectList(ViewBag.Producers, "ProdID", "ProdName"))" class="form-control"></select>
+                <span asp-validation-for="ProdID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
